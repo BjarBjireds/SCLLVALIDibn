@@ -266,22 +266,20 @@ local function shuffleTable(t)
     return t
 end
 
--- Table skor: tier super trap (10), tier sedang (5), tier rendah (2)
+-- Table skor: tier utama skor 6 (termasuk pode ditambah kembali), menengah skor 4, rendah skor 2
 local HardSuffixScores = {
-    -- Tier super trap (skor 10) - prioritas tertinggi
-    pode = 10,
-    alal = 10,
-    lala = 10,
-    mula = 10,
-    auma = 10,
-    chre = 10,
-    taph = 10,
-    ici  = 10,
-    anak = 10,   -- baru, skor 10
+    -- Tier utama (skor 6) - prioritas tertinggi
+    pode  = 6,    -- ditambah kembali
+    alal  = 6,
+    mula  = 6,
+    auma  = 6,
+    chre  = 6,
+    taph  = 6,
+    anak  = 6,
     
-    -- Tier sedang (skor 5)
-    ines = 5,
-    dae  = 5,
+    -- Tier menengah (skor 4)
+    ines = 4,
+    dae  = 4,
     
     -- Tier rendah (skor 2)
     ly   = 2,
@@ -290,9 +288,9 @@ local HardSuffixScores = {
 local function GetKillerScore(word)
     -- List suffix killer, diurutkan PANJANG → PENDEK
     local killerSuffixes = {
-        "pode", "alal", "lala", "mula", "auma", "chre", "taph", "ici", "anak",  -- gana dihapus, anak ditambah
-        "ines", "dae",                                                           -- 4 & 3 huruf
-        "ly"                                                                     -- 2 huruf
+        "pode", "alal", "mula", "auma", "chre", "taph", "anak",  -- skor 6 (pode ditambah kembali)
+        "ines", "dae",                                            -- skor 4
+        "ly"                                                      -- skor 2
     }
     
     for _, suf in ipairs(killerSuffixes) do
@@ -301,7 +299,7 @@ local function GetKillerScore(word)
         end
     end
     
-    -- Kalau tidak match suffix apapun → skor 0
+    -- Kalau tidak match → skor 0
     return 0
 end
     
